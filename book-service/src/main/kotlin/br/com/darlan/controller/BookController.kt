@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate
 import java.util.*
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("book-service")
 class BookController(
     private val environment: Environment,
     private val bookRepository: BookRepository,
@@ -59,8 +59,8 @@ class BookController(
 
         val port = environment.getProperty("local.server.port")
         book.currency = currency
-        book.enviroment = "$port FEIGN"
-        book.price = cambio!!.convertedValue
+        book.enviroment = "BOOK PORT: $port CAMBIO PORT: ${cambio!!.enviroment}"
+        book.price = cambio.convertedValue
         return book
     }
 }

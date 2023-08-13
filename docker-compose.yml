@@ -20,6 +20,22 @@ services:
     networks:
       - mysql-network
 
+  zookeeper:
+    image: zookeeper:3.8.0-temurin
+    ports:
+      - "10000:8080"
+      - "2181:2181"
+    environment:
+      - ZOO_ADMINSERVER_ENABLED=true
+    security_opt:
+      - seccomp:unconfined
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 4096M
+    #     reservations:
+    #       memory: 4096M
+
 networks:
   mysql-network:
     driver: bridge
